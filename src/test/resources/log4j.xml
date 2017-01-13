@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+    <appender name="STASH" class="net.myscloud.plugin.logging.log4j.redis.appender.RedisLog4jAppender">
+        <param name="source" value="test-application"></param>
+        <param name="host" value="10.2.81.93"></param>
+        <param name="port" value="6379"></param>
+        <param name="type" value="test"></param>
+        <param name="key" value="logstash"></param>
+    </appender>
+
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="100000"/>
+        <param name="Blocking" value="false"/>
+        <appender-ref ref="STASH"/>
+    </appender>
+
+    <root>
+        <priority value="INFO"/>
+        <appender-ref ref="ASYNC"/>
+    </root>
+</log4j:configuration>

@@ -1,0 +1,21 @@
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%-5p [%d{'MM-dd HH:mm:ss,SSS',GMT+8:00}] [%.10t][%X{CU}] %logger{36}[%L] - %m%n</Pattern>
+        </layout>
+    </appender>
+
+    <appender name="STASH" class="net.myscloud.plugin.logging.logback.redis.appender.LogbackRedisAppender">
+        <source>test-application</source>
+        <type>test</type>
+        <address>10.2.81.92:6379</address>
+        <key>logstash1</key>
+        <tags>test</tags>
+    </appender>
+
+    <root level="WARN">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="STASH"/>
+    </root>
+</configuration>
