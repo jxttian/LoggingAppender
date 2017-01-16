@@ -11,6 +11,7 @@ import java.util.concurrent.*;
 /**
  * DeliveryStrategy that waits on the producer if the output buffer is full.
  * The wait timeout is configurable with {@link BlockingDeliveryStrategy#setTimeout(long)}
+ *
  * @since 0.0.1
  */
 public class BlockingDeliveryStrategy extends ContextAwareBase implements DeliveryStrategy {
@@ -25,12 +26,11 @@ public class BlockingDeliveryStrategy extends ContextAwareBase implements Delive
             if (timeout > 0L) future.get(timeout, TimeUnit.MILLISECONDS);
             else if (timeout == 0) future.get();
             return true;
+        } catch (InterruptedException e) {
+            return false;
+        } catch (BufferExhaustedException | ExecutionException | TimeoutException | CancellationException e) {
+            failureCallback.onFailedDelivery(event, e);
         }
-        catch (InterruptedException e) { return false; }
-        catch (BufferExhaustedException e) { failureCallback.onFailedDelivery(event, e); }
-        catch (ExecutionException e)  { failureCallback.onFailedDelivery(event, e); }
-        catch (CancellationException e)  { failureCallback.onFailedDelivery(event, e); }
-        catch (TimeoutException e) { failureCallback.onFailedDelivery(event, e); }
         return false;
     }
 
@@ -41,9 +41,10 @@ public class BlockingDeliveryStrategy extends ContextAwareBase implements Delive
     /**
      * Sets the timeout for waits on full consumers.
      * <ul>
-     *     <li>{@code timeout > 0}: Wait for {@code timeout} milliseconds</li>
-     *     <li>{@code timeout == 0}: Wait infinitely
+     * <li>{@code timeout > 0}: Wait for {@code timeout} milliseconds</li>
+     * <li>{@code timeout == 0}: Wait infinitely
      * </ul>
+     *
      * @param timeout a timeout in {@link TimeUnit#MILLISECONDS}.
      */
     public void setTimeout(long timeout) {
