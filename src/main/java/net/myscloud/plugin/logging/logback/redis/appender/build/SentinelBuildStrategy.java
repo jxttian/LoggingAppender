@@ -30,6 +30,7 @@ public class SentinelBuildStrategy extends RedisBuildStrategy {
                         .setFailedAttempts(this.getConfig().getFailedAttempts())
                         .setRetryAttempts(this.getConfig().getRetryAttempts())
                         .setPingTimeout(this.getConfig().getPingTimeout())
+                        .setMasterName(this.getConfig().getMasterName())
                         .setMasterConnectionPoolSize(this.getConfig().getConnectionPoolSize());
                 return Redisson.create(config);
             }

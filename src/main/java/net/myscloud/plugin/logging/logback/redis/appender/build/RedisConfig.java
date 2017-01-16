@@ -43,4 +43,6 @@ public class RedisConfig {
     private String password;
 
     private int subscriptionsPerConnection = 5;
+
+    private String masterName = "master";
 }
