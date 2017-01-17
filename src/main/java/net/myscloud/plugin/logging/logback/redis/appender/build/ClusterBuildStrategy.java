@@ -8,7 +8,7 @@ import org.redisson.config.Config;
 import java.util.List;
 
 /**
- * RedisCluster构建策略
+ * RedisCluster构建策略,目前Logstash不支持RedisCluster，可自行实现类似Logstash功能
  *
  * @author Genesis
  * @since 1.0

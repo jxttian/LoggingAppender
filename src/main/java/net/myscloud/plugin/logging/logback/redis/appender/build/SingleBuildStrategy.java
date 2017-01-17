@@ -8,7 +8,7 @@ import org.redisson.config.Config;
 import java.util.List;
 
 /**
- * 单机Redis构建策略
+ * 单机Redis构建策略,默认,当前Logstash只支持Redis单机
  *
  * @author Genesis
  * @since 1.0

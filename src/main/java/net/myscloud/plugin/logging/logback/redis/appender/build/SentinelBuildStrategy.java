@@ -8,7 +8,7 @@ import org.redisson.config.Config;
 import java.util.List;
 
 /**
- * 哨兵Redis构建策略
+ * 哨兵Redis构建策略,目前Logstash不支持Redis哨兵，可自行实现类似Logstash功能
  *
  * @author Genesis
  * @since 1.0
