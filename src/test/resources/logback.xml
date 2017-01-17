@@ -12,6 +12,8 @@
                 <addresses>10.2.81.93:6379</addresses>
             </config>
         </redisBuildStrategy>
+        <deliveryStrategy
+                class="net.myscloud.plugin.logging.logback.redis.appender.delivery.AsynchronousDeliveryStrategy"/>
         <source>test-application</source>
         <type>test</type>
         <key>redis-log</key>

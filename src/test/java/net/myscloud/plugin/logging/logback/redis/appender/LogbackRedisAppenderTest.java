@@ -31,6 +31,11 @@ public class LogbackRedisAppenderTest {
         for (int i = 0; i < 100; i++) {
             logger.warn("test" + i);
         }
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @After
