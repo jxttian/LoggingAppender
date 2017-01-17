@@ -6,7 +6,7 @@
         </layout>
     </appender>
 
-    <appender name="STASH" class="net.myscloud.plugin.logging.logback.redis.appender.LogbackRedisAppender">
+    <appender name="Redis" class="net.myscloud.plugin.logging.logback.redis.appender.LogbackRedisAppender">
         <redisBuildStrategy class="net.myscloud.plugin.logging.logback.redis.appender.build.SingleBuildStrategy">
             <config class="net.myscloud.plugin.logging.logback.redis.appender.build.RedisConfig">
                 <addresses>10.2.81.93:6379</addresses>
@@ -14,12 +14,12 @@
         </redisBuildStrategy>
         <source>test-application</source>
         <type>test</type>
-        <key>logstash1</key>
+        <key>redis-log</key>
         <tags>test</tags>
     </appender>
 
     <root level="WARN">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="STASH"/>
+        <appender-ref ref="Redis"/>
     </root>
 </configuration>

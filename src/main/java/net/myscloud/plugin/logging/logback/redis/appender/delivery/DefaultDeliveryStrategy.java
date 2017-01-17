@@ -1,5 +1,6 @@
 package net.myscloud.plugin.logging.logback.redis.appender.delivery;
 
+import net.myscloud.plugin.logging.JSONEvent;
 import org.redisson.api.RQueue;
 
 /**
@@ -11,7 +12,7 @@ import org.redisson.api.RQueue;
 public class DefaultDeliveryStrategy extends DeliveryStrategy {
 
     @Override
-    public void send(RQueue<String> queue, String massage) {
-        queue.offer(massage);
+    public void send(RQueue<JSONEvent> queue, JSONEvent event) {
+        queue.offer(event);
     }
 }

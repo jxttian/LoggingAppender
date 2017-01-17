@@ -10,8 +10,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.stream.IntStream;
-
 public class LogbackRedisAppenderTest {
 
     @Before
@@ -30,9 +28,9 @@ public class LogbackRedisAppenderTest {
     @Test
     public void testRedissionList() {
         Logger logger = LoggerFactory.getLogger(LogbackRedisAppenderTest.class);
-        IntStream.range(0, 100).forEach(i -> {
+        for (int i = 0; i < 100; i++) {
             logger.warn("test" + i);
-        });
+        }
     }
 
     @After

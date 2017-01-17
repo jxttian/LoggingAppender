@@ -6,7 +6,10 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * Created by genesis on 16/4/14.
+ * 日志消息实体
+ *
+ * @author Genesis
+ * @since 1.0
  */
 @Data
 public class JSONEvent {

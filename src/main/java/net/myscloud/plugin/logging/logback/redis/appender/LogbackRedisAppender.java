@@ -3,7 +3,6 @@ package net.myscloud.plugin.logging.logback.redis.appender;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxyUtil;
-import com.alibaba.fastjson.JSON;
 import lombok.Getter;
 import lombok.Setter;
 import net.myscloud.plugin.logging.JSONEvent;
@@ -31,7 +30,7 @@ public class LogbackRedisAppender extends LogbackRedisAppenderConfig<ILoggingEve
 
     private RedissonClient redisson;
 
-    private RQueue<String> logstashQueue;
+    private RQueue<JSONEvent> logstashQueue;
 
     public LogbackRedisAppender() {
         super();
@@ -52,7 +51,7 @@ public class LogbackRedisAppender extends LogbackRedisAppenderConfig<ILoggingEve
             if (tp != null) {
                 jsonEvent.setThrowable(ThrowableProxyUtil.asString(tp));
             }
-            deliveryStrategy.send(logstashQueue, JSON.toJSONString(jsonEvent));
+            deliveryStrategy.send(logstashQueue, jsonEvent);
         }
     }
 
@@ -63,7 +62,7 @@ public class LogbackRedisAppender extends LogbackRedisAppenderConfig<ILoggingEve
             addError("初始化RedissonClient失败");
             return;
         }
-        logstashQueue = redisson.getQueue(this.getKey());
+        logstashQueue = redisson.getQueue(this.getKey(), new FastjsonCodec());
         super.start();
     }
 
