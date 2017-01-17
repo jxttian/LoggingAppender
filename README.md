@@ -41,3 +41,5 @@
         "thread": "main"
     }
 ```
+
+-- https://www.elastic.co/guide/en/logstash/current/plugins-inputs-redis.html#plugins-inputs-redis
