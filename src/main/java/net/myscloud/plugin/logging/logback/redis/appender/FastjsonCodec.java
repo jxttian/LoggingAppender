@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Genesis
  * @since 1.0
  */
-public class FastjsonCodec implements Codec {
+class FastjsonCodec implements Codec {
 
     private final Encoder encoder = new Encoder() {
         @Override

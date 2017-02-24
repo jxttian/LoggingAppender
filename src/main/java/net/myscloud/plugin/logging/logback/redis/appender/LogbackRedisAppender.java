@@ -7,7 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import net.myscloud.plugin.logging.JSONEvent;
 import net.myscloud.plugin.logging.logback.redis.appender.build.RedisBuildStrategy;
-import net.myscloud.plugin.logging.logback.redis.appender.delivery.DefaultDeliveryStrategy;
+import net.myscloud.plugin.logging.logback.redis.appender.delivery.AsynchronousDeliveryStrategy;
+import net.myscloud.plugin.logging.logback.redis.appender.delivery.BlockingDeliveryStrategy;
 import net.myscloud.plugin.logging.logback.redis.appender.delivery.DeliveryStrategy;
 import org.redisson.api.RQueue;
 import org.redisson.api.RedissonClient;
@@ -26,7 +27,7 @@ public class LogbackRedisAppender extends LogbackRedisAppenderConfig<ILoggingEve
 
     private RedisBuildStrategy redisBuildStrategy;
 
-    private DeliveryStrategy deliveryStrategy = new DefaultDeliveryStrategy();
+    private DeliveryStrategy deliveryStrategy = new AsynchronousDeliveryStrategy();
 
     private RedissonClient redisson;
 

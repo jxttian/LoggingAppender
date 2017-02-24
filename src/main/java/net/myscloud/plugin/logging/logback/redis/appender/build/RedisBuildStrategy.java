@@ -2,6 +2,7 @@ package net.myscloud.plugin.logging.logback.redis.appender.build;
 
 import ch.qos.logback.core.spi.ContextAwareBase;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.redisson.api.RedissonClient;
 
 /**
@@ -11,6 +12,7 @@ import org.redisson.api.RedissonClient;
  * @since 1.0
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public abstract class RedisBuildStrategy extends ContextAwareBase {
 
     private RedisConfig config;
@@ -18,7 +20,7 @@ public abstract class RedisBuildStrategy extends ContextAwareBase {
     /**
      * 构建 {@link RedissonClient}
      *
-     * @return
+     * @return RedissonClient
      */
     public abstract RedissonClient build();
 
