@@ -1,4 +1,4 @@
-package net.myscloud.plugin.logging.logback.redis.appender;
+package net.myscloud.plugin.logging.sender;
 
 import com.alibaba.fastjson.JSON;
 import io.netty.buffer.ByteBuf;
@@ -17,19 +17,11 @@ import java.io.IOException;
  */
 class FastjsonCodec implements Codec {
 
-    private final Encoder encoder = new Encoder() {
-        @Override
-        public byte[] encode(Object in) throws IOException {
-            return JSON.toJSONBytes(in);
-        }
-    };
+    private final Encoder encoder = in -> JSON.toJSONBytes(in);
 
-    private final Decoder decoder = new Decoder() {
-        @Override
-        public Object decode(ByteBuf buf, State state) throws IOException {
-            // TODO: 2017/1/17 暂时不实现Decoder
-            return null;
-        }
+    private final Decoder<Object> decoder = (buf, state) -> {
+        // TODO: 2017/1/17 暂时不实现Decoder
+        return null;
     };
 
     @Override

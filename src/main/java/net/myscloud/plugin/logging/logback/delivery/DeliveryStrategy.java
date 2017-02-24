@@ -1,11 +1,12 @@
-package net.myscloud.plugin.logging.logback.kafka.delivery;
+package net.myscloud.plugin.logging.logback.delivery;
 
 import ch.qos.logback.core.spi.ContextAwareBase;
 import net.myscloud.plugin.logging.JSONEvent;
+import net.myscloud.plugin.logging.sender.MessageSender;
 import org.apache.kafka.clients.producer.Producer;
 
 /**
- * 日志传输策略Kafka
+ * 日志传输策略
  *
  * @author Genesis
  * @since 1.0
@@ -13,12 +14,12 @@ import org.apache.kafka.clients.producer.Producer;
 public abstract class DeliveryStrategy extends ContextAwareBase {
 
     /**
-     * 发送日志到Kafka
+     * 发送日志
      *
-     * @param producer
+     * @param sender
      * @param event
      * @return
      */
-    public abstract boolean send(Producer<Long, String> producer, JSONEvent event);
+    public abstract boolean send(MessageSender sender, JSONEvent event);
 
 }
