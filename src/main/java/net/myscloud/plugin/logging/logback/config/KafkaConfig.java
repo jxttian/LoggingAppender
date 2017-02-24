@@ -13,7 +13,11 @@ import net.myscloud.plugin.logging.Consts;
 @Getter
 @Setter
 public class KafkaConfig {
+    /**
+     * 服务器地址
+     */
     private String addresses;
+
     private String topic = Consts.DEFAULT_TOPIC;
     private String client = Consts.DEFAULT_KAFKA_CLIENT;
     private String keySerializer = Consts.DEFAULT_KEY_SERIALIZER;

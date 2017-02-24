@@ -11,7 +11,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import java.util.Properties;
 
 /**
- * Created by genesis on 2017/2/24.
+ * Kafka构建策略
  */
 @Getter
 @Setter

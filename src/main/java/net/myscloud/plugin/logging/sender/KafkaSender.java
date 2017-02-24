@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Created by genesis on 2017/2/24.
+ * Kafka消息发送者
  */
 @Setter
 @Getter

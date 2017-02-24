@@ -6,17 +6,17 @@
         </layout>
     </appender>
 
-    <!--<appender name="Redis" class="net.myscloud.plugin.logging.logback.LogbackAppender">-->
-        <!--<buildStrategy class="net.myscloud.plugin.logging.logback.build.RedisSingleBuildStrategy">-->
-            <!--<config class="net.myscloud.plugin.logging.logback.config.RedisConfig">-->
-                <!--<addresses>10.2.81.93:6379</addresses>-->
-                <!--<topic>redis-log</topic>-->
-            <!--</config>-->
-        <!--</buildStrategy>-->
-        <!--<deliveryStrategy-->
-                <!--class="net.myscloud.plugin.logging.logback.delivery.AsynchronousDeliveryStrategy"/>-->
-        <!--<source>test-application</source>-->
-    <!--</appender>-->
+    <appender name="Redis" class="net.myscloud.plugin.logging.logback.LogbackAppender">
+        <buildStrategy class="net.myscloud.plugin.logging.logback.build.RedisSingleBuildStrategy">
+            <config class="net.myscloud.plugin.logging.logback.config.RedisConfig">
+                <addresses>127.0.0.1:6379</addresses>
+                <topic>redis-log</topic>
+            </config>
+        </buildStrategy>
+        <deliveryStrategy
+                class="net.myscloud.plugin.logging.logback.delivery.AsynchronousDeliveryStrategy"/>
+        <source>test-application</source>
+    </appender>
 
     <appender name="Kafka" class="net.myscloud.plugin.logging.logback.LogbackAppender">
         <buildStrategy class="net.myscloud.plugin.logging.logback.build.KafkaBuildStrategy">

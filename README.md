@@ -1,12 +1,18 @@
 # logging-appender
 ##logback
-###redis
+
 -- pom.xml添加依赖
 ```xml
     <dependency>
         <groupId>org.redisson</groupId>
         <artifactId>redisson</artifactId>
         <version>3.2.3</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>0.10.1.1</version>
+        <scope>provided</scope>
     </dependency>
     <dependency>
         <groupId>net.myscloud.plugin</groupId>
@@ -16,16 +22,28 @@
 ```
 -- logback.xml添加Appender
 ```xml
-    <appender name="Redis" class="net.myscloud.plugin.logging.logback.redis.appender.LogbackRedisAppender">
-        <redisBuildStrategy class="net.myscloud.plugin.logging.logback.redis.appender.build.SingleBuildStrategy">
-            <config class="net.myscloud.plugin.logging.logback.redis.appender.build.RedisConfig">
-                <addresses>10.2.81.93:6379</addresses>
+    <appender name="Redis" class="net.myscloud.plugin.logging.logback.LogbackAppender">
+        <buildStrategy class="net.myscloud.plugin.logging.logback.build.RedisSingleBuildStrategy">
+            <config class="net.myscloud.plugin.logging.logback.config.RedisConfig">
+                <addresses>127.0.0.1:6379</addresses>
+                <topic>redis-log</topic>
             </config>
-        </redisBuildStrategy>
+        </buildStrategy>
+        <deliveryStrategy
+                class="net.myscloud.plugin.logging.logback.delivery.AsynchronousDeliveryStrategy"/>
         <source>test-application</source>
-        <type>test</type>
-        <key>redis-log</key>
-        <tags>test</tags>
+    </appender>
+
+    <appender name="Kafka" class="net.myscloud.plugin.logging.logback.LogbackAppender">
+        <buildStrategy class="net.myscloud.plugin.logging.logback.build.KafkaBuildStrategy">
+            <config class="net.myscloud.plugin.logging.logback.config.KafkaConfig">
+                <addresses>127.0.0.1:9092</addresses>
+                <topic>topic1</topic>
+            </config>
+        </buildStrategy>
+        <deliveryStrategy
+                class="net.myscloud.plugin.logging.logback.delivery.AsynchronousDeliveryStrategy"/>
+        <source>test-application</source>
     </appender>
 ```
 

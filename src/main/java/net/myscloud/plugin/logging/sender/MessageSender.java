@@ -3,7 +3,7 @@ package net.myscloud.plugin.logging.sender;
 import net.myscloud.plugin.logging.JSONEvent;
 
 /**
- * Created by genesis on 2017/2/24.
+ * 消息发送者，处理发送逻辑
  */
 public interface MessageSender {
 

@@ -9,7 +9,7 @@ import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.Codec;
 
 /**
- * Created by genesis on 2017/2/24.
+ * Redis消息发送者
  */
 @Setter
 @Getter
