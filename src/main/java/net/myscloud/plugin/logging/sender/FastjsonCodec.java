@@ -1,4 +1,4 @@
-package net.myscloud.plugin.logging.logback.redis.appender;
+package net.myscloud.plugin.logging.sender;
 
 import com.alibaba.fastjson.JSON;
 import io.netty.buffer.ByteBuf;

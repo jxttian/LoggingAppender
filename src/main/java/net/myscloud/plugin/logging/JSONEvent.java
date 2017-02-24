@@ -1,29 +1,55 @@
 package net.myscloud.plugin.logging;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
-
-import java.util.List;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * 日志消息实体
+ * 日志消息实体，如需增加日志字
  *
  * @author Genesis
  * @since 1.0
  */
-@Data
+@Getter
+@Setter
+@Builder
 public class JSONEvent {
+    /**
+     * 来源应用
+     */
     private String source;
+    /**
+     * 来源应用IP地址
+     */
     private String host;
-    private String hostname;
-    private String path;
-    private String type;
-    private List<String> tags;
+
+    /**
+     * 日志文本
+     */
     private String message;
-    @JSONField(name = "@timestamp")
+
+    /**
+     * 时间戳
+     */
     private String timestamp;
+
+    /**
+     * 日志输出类名
+     */
     private String logger;
+
+    /**
+     * 日志级别
+     */
     private String level;
+
+    /**
+     * 日志输出线程
+     */
     private String thread;
+
+    /**
+     * 异常堆栈
+     */
     private String throwable;
 }

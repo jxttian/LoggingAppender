@@ -19,6 +19,15 @@ public interface Consts {
     //默认日期格式化
     DateFormat DEFAULT_DATEFORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SZ");
 
-    //默认Key
-    String DEFAULT_KEY = "log-stash";
+    //默认Topic
+    String DEFAULT_TOPIC = "log-stash";
+
+    //
+    String DEFAULT_KAFKA_CLIENT = "LogstashClient";
+    //
+    String DEFAULT_KEY_SERIALIZER = "org.apache.kafka.common.serialization.IntegerSerializer";
+    //
+    String DEFAULT_VALUE_SERIALIZER = "org.apache.kafka.common.serialization.StringSerializer";
+
+    int DEFAULT_CONNECTION_TIMEOUT = 5000;
 }

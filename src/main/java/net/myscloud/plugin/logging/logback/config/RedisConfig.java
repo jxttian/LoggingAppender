@@ -1,6 +1,8 @@
-package net.myscloud.plugin.logging.logback.redis.appender.build;
+package net.myscloud.plugin.logging.logback.config;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import net.myscloud.plugin.logging.Consts;
 
 /**
  * Redis配置类 部分注释参考{@link org.redisson.config.BaseConfig}
@@ -8,12 +10,15 @@ import lombok.Data;
  * @author Genesis
  * @since 1.0
  */
-@Data
+@Getter
+@Setter
 public class RedisConfig {
     /**
      * Redis服务器地址,多个则以`,`分隔
      */
     private String addresses;
+
+    private String topic = Consts.DEFAULT_TOPIC;
 
     private int database = 0;
 
