@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import net.myscloud.plugin.logging.JSONEvent;
+import net.myscloud.plugin.logging.LoggerEvent;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
@@ -30,7 +30,17 @@ public class KafkaSender extends ContextAwareBase implements MessageSender {
     private long timeout;
 
     @Override
-    public boolean send(JSONEvent event) {
+    public boolean send(LoggerEvent event) {
+        return send(topic, event);
+    }
+
+    @Override
+    public boolean sendAsync(LoggerEvent event) {
+        return sendAsync(topic, event);
+    }
+
+    @Override
+    public boolean send(String topic, LoggerEvent event) {
         try {
             final Future<RecordMetadata> future = producer.send(new ProducerRecord<>(topic, JSON.toJSONString(event)));
             if (timeout > 0L)
@@ -46,7 +56,7 @@ public class KafkaSender extends ContextAwareBase implements MessageSender {
     }
 
     @Override
-    public boolean sendAsync(JSONEvent event) {
+    public boolean sendAsync(String topic, LoggerEvent event) {
         producer.send(new ProducerRecord<>(topic, JSON.toJSONString(event)), (metadata, exception) -> {
             if (exception != null) {
                 addError("Kafka 异步发送日志失败 : " + exception.getMessage());

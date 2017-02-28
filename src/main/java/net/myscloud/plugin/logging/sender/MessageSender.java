@@ -1,6 +1,6 @@
 package net.myscloud.plugin.logging.sender;
 
-import net.myscloud.plugin.logging.JSONEvent;
+import net.myscloud.plugin.logging.LoggerEvent;
 
 /**
  * 消息发送者，处理发送逻辑
@@ -13,7 +13,7 @@ public interface MessageSender {
      * @param event
      * @return
      */
-    boolean send(JSONEvent event);
+    boolean send(LoggerEvent event);
 
     /**
      * 异步发送
@@ -21,7 +21,25 @@ public interface MessageSender {
      * @param event
      * @return
      */
-    boolean sendAsync(JSONEvent event);
+    boolean sendAsync(LoggerEvent event);
+
+    /**
+     * 同步发送
+     *
+     * @param topic
+     * @param event
+     * @return
+     */
+    boolean send(String topic, LoggerEvent event);
+
+    /**
+     * 异步发送
+     *
+     * @param topic
+     * @param event
+     * @return
+     */
+    boolean sendAsync(String topic, LoggerEvent event);
 
     /**
      * 初始化

@@ -40,7 +40,9 @@ public class RedisSingleBuildStrategy extends BuildStrategy {
                         .setRetryAttempts(this.getConfig().getRetryAttempts())
                         .setPingTimeout(this.getConfig().getPingTimeout())
                         .setConnectionPoolSize(this.getConfig().getConnectionPoolSize());
-                return RedisSender.builder().redis(Redisson.create(config)).topic(this.getConfig().getTopic()).build();
+                MessageSender sender = RedisSender.builder().redis(Redisson.create(config)).topic(this.getConfig().getTopic()).build();
+                BuildStrategy.sender = sender;
+                return sender;
             }
         } catch (Exception e) {
             addError("RedisSingleBuildStrategy 构建 RedisSender 失败 : " + e.getMessage());

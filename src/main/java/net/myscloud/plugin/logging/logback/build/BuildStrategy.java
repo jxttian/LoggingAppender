@@ -1,8 +1,6 @@
 package net.myscloud.plugin.logging.logback.build;
 
 import ch.qos.logback.core.spi.ContextAwareBase;
-import lombok.Getter;
-import lombok.Setter;
 import net.myscloud.plugin.logging.sender.MessageSender;
 
 /**
@@ -12,6 +10,21 @@ import net.myscloud.plugin.logging.sender.MessageSender;
  * @since 1.0
  */
 public abstract class BuildStrategy extends ContextAwareBase {
+
+    /**
+     * 消息发送者
+     */
+    protected static MessageSender sender;
+
+    /**
+     * 获取发送者
+     *
+     * @return
+     */
+    public static MessageSender sender() {
+        return sender;
+    }
+
     /**
      * 构建 {@link MessageSender}
      *

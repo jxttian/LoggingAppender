@@ -1,11 +1,12 @@
 package net.myscloud.plugin.logging;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 日志消息实体，如需增加日志字
+ * 系统日志消息实体
  *
  * @author Genesis
  * @since 1.0
@@ -13,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class JSONEvent {
+public class JSONEvent implements LoggerEvent {
     /**
      * 来源应用
      */
@@ -31,6 +32,7 @@ public class JSONEvent {
     /**
      * 时间戳
      */
+    @JSONField(name = "@timestamp")
     private String timestamp;
 
     /**

@@ -4,11 +4,15 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
+import net.myscloud.plugin.logging.Consts;
+import net.myscloud.plugin.logging.logback.build.BuildStrategy;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Date;
 
 public class LogbackRedisAppenderTest {
 
@@ -30,6 +34,7 @@ public class LogbackRedisAppenderTest {
         Logger logger = LoggerFactory.getLogger(LogbackRedisAppenderTest.class);
         for (int i = 0; i < 100; i++) {
             logger.warn("test" + i);
+            BuildStrategy.sender().send(TestEvent.builder().test("213").type("23asd").timestamp(Consts.DEFAULT_DATEFORMAT.format(new Date())).build());
         }
         try {
             Thread.sleep(2000L);

@@ -3,7 +3,7 @@ package net.myscloud.plugin.logging.sender;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import net.myscloud.plugin.logging.JSONEvent;
+import net.myscloud.plugin.logging.LoggerEvent;
 import org.redisson.api.RQueue;
 import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.Codec;
@@ -18,20 +18,31 @@ public class RedisSender implements MessageSender {
 
     private RedissonClient redis;
 
-    private RQueue<JSONEvent> queue;
+    private RQueue<LoggerEvent> queue;
 
     private String topic;
 
     private Codec codec = new FastjsonCodec();
 
     @Override
-    public boolean send(JSONEvent event) {
+    public boolean send(LoggerEvent event) {
         return queue.offer(event);
     }
 
     @Override
-    public boolean sendAsync(JSONEvent event) {
+    public boolean sendAsync(LoggerEvent event) {
         queue.offerAsync(event);
+        return true;
+    }
+
+    @Override
+    public boolean send(String topic, LoggerEvent event) {
+        return redis.getQueue(topic, new FastjsonCodec()).offer(event);
+    }
+
+    @Override
+    public boolean sendAsync(String topic, LoggerEvent event) {
+        redis.getQueue(topic, new FastjsonCodec()).offerAsync(event);
         return true;
     }
 

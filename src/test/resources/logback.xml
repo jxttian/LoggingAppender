@@ -9,8 +9,8 @@
     <appender name="Redis" class="net.myscloud.plugin.logging.logback.LogbackAppender">
         <buildStrategy class="net.myscloud.plugin.logging.logback.build.RedisSingleBuildStrategy">
             <config class="net.myscloud.plugin.logging.logback.config.RedisConfig">
-                <addresses>127.0.0.1:6379</addresses>
-                <topic>redis-log</topic>
+                <addresses>120.26.201.41:6379</addresses>
+                <topic>laimi_cms:logs</topic>
             </config>
         </buildStrategy>
         <deliveryStrategy
@@ -18,21 +18,21 @@
         <source>test-application</source>
     </appender>
 
-    <appender name="Kafka" class="net.myscloud.plugin.logging.logback.LogbackAppender">
-        <buildStrategy class="net.myscloud.plugin.logging.logback.build.KafkaBuildStrategy">
-            <config class="net.myscloud.plugin.logging.logback.config.KafkaConfig">
-                <addresses>127.0.0.1:9092</addresses>
-                <topic>topic1</topic>
-            </config>
-        </buildStrategy>
-        <deliveryStrategy
-                class="net.myscloud.plugin.logging.logback.delivery.AsynchronousDeliveryStrategy"/>
-        <source>test-application</source>
-    </appender>
+    <!--<appender name="Kafka" class="net.myscloud.plugin.logging.logback.LogbackAppender">-->
+        <!--<buildStrategy class="net.myscloud.plugin.logging.logback.build.KafkaBuildStrategy">-->
+            <!--<config class="net.myscloud.plugin.logging.logback.config.KafkaConfig">-->
+                <!--<addresses>127.0.0.1:9092</addresses>-->
+                <!--<topic>topic1</topic>-->
+            <!--</config>-->
+        <!--</buildStrategy>-->
+        <!--<deliveryStrategy-->
+                <!--class="net.myscloud.plugin.logging.logback.delivery.AsynchronousDeliveryStrategy"/>-->
+        <!--<source>test-application</source>-->
+    <!--</appender>-->
 
     <root level="WARN">
         <appender-ref ref="Console"/>
         <!--<appender-ref ref="Redis"/>-->
-        <appender-ref ref="Kafka"/>
+        <appender-ref ref="Redis"/>
     </root>
 </configuration>
