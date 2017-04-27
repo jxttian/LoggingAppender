@@ -7,6 +7,8 @@ import net.myscloud.plugin.logging.Consts;
 import net.myscloud.plugin.logging.Kits;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * LogbackAppenderConfig
@@ -20,7 +22,12 @@ abstract class LogbackAppenderConfig<E> extends UnsynchronizedAppenderBase<E> {
     /**
      * 日期格式化
      */
-    private DateFormat df = Consts.DEFAULT_DATEFORMAT;
+    private DateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SZ", Locale.CHINESE);
+
+    /**
+     * 日期格式化
+     */
+    private DateFormat datetimeFormat = Consts.DEFAULT_DATETIME_FORMAT;
     /**
      * 日志来源应用
      */

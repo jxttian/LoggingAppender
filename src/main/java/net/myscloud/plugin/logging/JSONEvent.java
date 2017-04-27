@@ -36,6 +36,11 @@ public class JSONEvent implements LoggerEvent {
     private String timestamp;
 
     /**
+     * 时间
+     */
+    private String datetime;
+
+    /**
      * 日志输出类名
      */
     private String logger;

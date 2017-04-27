@@ -4,7 +4,6 @@ import com.google.common.base.Charsets;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 /**
  * 配置
@@ -18,7 +17,7 @@ public interface Consts {
     String DEFAULT_CHARSET = Charsets.UTF_8.name();
 
     //默认日期格式化
-    DateFormat DEFAULT_DATEFORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SZ", Locale.CHINESE);
+    DateFormat DEFAULT_DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
     //默认Topic
     String DEFAULT_TOPIC = "log-stash";
