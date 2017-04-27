@@ -34,7 +34,7 @@ public class LogbackRedisAppenderTest {
         Logger logger = LoggerFactory.getLogger(LogbackRedisAppenderTest.class);
         for (int i = 0; i < 100; i++) {
             logger.warn("test" + i);
-            BuildStrategy.sender().send(TestEvent.builder().test("213").type("23asd").timestamp(Consts.DEFAULT_DATEFORMAT.format(new Date())).build());
+            BuildStrategy.sender().send(TestEvent.builder().test("213").type("23asd").timestamp(System.currentTimeMillis()).build());
         }
         try {
             Thread.sleep(2000L);

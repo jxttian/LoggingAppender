@@ -7,4 +7,8 @@ package net.myscloud.plugin.logging;
  * @since 1.0
  */
 public interface LoggerEvent {
+
+    Long getTimestamp();
+
+    String getDatetime();
 }

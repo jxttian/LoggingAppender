@@ -37,13 +37,11 @@ public class LogbackAppender extends LogbackAppenderConfig<ILoggingEvent> {
     protected void append(ILoggingEvent event) {
         if (sender != null) {
             IThrowableProxy tp = event.getThrowableProxy();
-            Date datetime = new Date(event.getTimeStamp());
             deliveryStrategy.send(sender, JSONEvent.builder().host(this.getHost())
                     .level(event.getLevel().toString())
                     .source(this.getSource())
                     .message(event.getFormattedMessage())
-                    .timestamp(this.getTimestampFormat().format(datetime))
-                    .datetime(this.getDatetimeFormat().format(datetime))
+                    .timestamp(event.getTimeStamp())
                     .logger(event.getLoggerName())
                     .thread(event.getThreadName())
                     .throwable(tp == null ? null : ThrowableProxyUtil.asString(tp)).build());
