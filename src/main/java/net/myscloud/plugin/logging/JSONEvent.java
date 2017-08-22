@@ -3,8 +3,7 @@ package net.myscloud.plugin.logging;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.util.Date;
+import lombok.Setter;
 
 /**
  * 系统日志消息实体
@@ -13,6 +12,7 @@ import java.util.Date;
  * @since 1.0
  */
 @Getter
+@Setter
 @Builder
 public class JSONEvent implements LoggerEvent {
     /**
@@ -30,15 +30,10 @@ public class JSONEvent implements LoggerEvent {
     private String message;
 
     /**
-     * 用于ELK的时间戳
+     * 时间戳
      */
     @JSONField(name = "@timestamp")
-    private String datetime;
-
-    /**
-     * 时间戳,由于ES持久化默认使用UTC时间,导致java api查询出的时间不正确，故再加一个时间戳
-     */
-    private Long timestamp;
+    private String timestamp;
 
     /**
      * 日志输出类名
@@ -59,14 +54,4 @@ public class JSONEvent implements LoggerEvent {
      * 异常堆栈
      */
     private String throwable;
-
-    @Override
-    public Long getTimestamp() {
-        return timestamp;
-    }
-
-    @Override
-    public String getDatetime() {
-        return Consts.TIMESTAMP_FORMAT.format(new Date(this.getTimestamp()));
-    }
 }
