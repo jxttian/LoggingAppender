@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.myscloud.plugin</groupId>
     <artifactId>logging-appender</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1</version>
 
     <name>Logging Appender</name>
     <description>以最小的代码侵入性(仅需在logback.xml或log4j2.xml中配置相应Appender即可)将业务系统日志统一推送到Redis/Kafka中</description>
