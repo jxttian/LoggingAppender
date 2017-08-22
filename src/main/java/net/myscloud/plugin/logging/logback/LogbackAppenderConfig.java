@@ -22,10 +22,6 @@ abstract class LogbackAppenderConfig<E> extends UnsynchronizedAppenderBase<E> {
      */
     private DateFormat df = Consts.DEFAULT_DATEFORMAT;
     /**
-     * 日志来源应用
-     */
-    private String source = null;
-    /**
      * 日志来源应用IP
      */
     private String host = Kits.getIp();

@@ -39,7 +39,6 @@ public class LogbackAppender extends LogbackAppenderConfig<ILoggingEvent> {
             IThrowableProxy tp = event.getThrowableProxy();
             deliveryStrategy.send(sender, JSONEvent.builder().host(this.getHost())
                     .level(event.getLevel().toString())
-                    .source(this.getSource())
                     .message(event.getFormattedMessage())
                     .timestamp(this.getDf().format(new Date(event.getTimeStamp())))
                     .logger(event.getLoggerName())

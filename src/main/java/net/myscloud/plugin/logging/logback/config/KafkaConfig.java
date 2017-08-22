@@ -23,4 +23,5 @@ public class KafkaConfig {
     private String keySerializer = Consts.DEFAULT_KEY_SERIALIZER;
     private String valueSerializer = Consts.DEFAULT_VALUE_SERIALIZER;
     private int connectionTimeout = Consts.DEFAULT_CONNECTION_TIMEOUT;
+    private int maxBlockMs = 60000;
 }

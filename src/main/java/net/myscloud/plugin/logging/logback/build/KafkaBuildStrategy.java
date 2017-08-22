@@ -24,6 +24,8 @@ public class KafkaBuildStrategy extends BuildStrategy {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, this.getConfig().getAddresses());
         props.put(ProducerConfig.CLIENT_ID_CONFIG, this.getConfig().getClient());
+        props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, this.getConfig().getConnectionTimeout());
+        props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, this.getConfig().getMaxBlockMs());
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.IntegerSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         MessageSender sender = KafkaSender.builder().topic(this.getConfig().getTopic()).producer(new KafkaProducer<>(props)).build();
