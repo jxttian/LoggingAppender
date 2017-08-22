@@ -88,4 +88,17 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>putui-nexus</id>
+            <name>Releases</name>
+            <url>http://120.26.201.41:8111/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>putui-nexus</id>
+            <name>Snapshot</name>
+            <url>http://120.26.201.41:8111/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

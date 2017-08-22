@@ -32,8 +32,9 @@ public class LogbackRedisAppenderTest {
     @Test
     public void testRedissionList() {
         Logger logger = LoggerFactory.getLogger(LogbackRedisAppenderTest.class);
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 100; i++) {
             logger.warn("test" + i);
+            BuildStrategy.sender().send(TestEvent.builder().test("213").type("23asd").timestamp(System.currentTimeMillis()).build());
         }
         try {
             Thread.sleep(2000L);
