@@ -13,7 +13,6 @@
         <groupId>org.apache.kafka</groupId>
         <artifactId>kafka-clients</artifactId>
         <version>0.10.1.1</version>
-        <scope>provided</scope>
     </dependency>
     <dependency>
         <groupId>net.myscloud.plugin</groupId>
