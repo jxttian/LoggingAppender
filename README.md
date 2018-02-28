@@ -61,3 +61,22 @@
 ```
 
 -- https://www.elastic.co/guide/en/logstash/current/plugins-inputs-redis.html#plugins-inputs-redis
+
+
+-- 集成SpringBoot
+如果需要把Redis或者Kafka地址配置在SpringBoot配置文件中可使用
+```xml
+    <springProperty scope="context" name="kafkaAddresses" source="logback.kafka.addresses"/>
+
+    <appender name="Kafka" class="net.myscloud.plugin.logging.logback.LogbackAppender">
+        <buildStrategy class="net.myscloud.plugin.logging.logback.build.KafkaBuildStrategy">
+            <config class="net.myscloud.plugin.logging.logback.config.KafkaConfig">
+                <addresses>${kafkaAddresses}</addresses>
+                <topic>topic1</topic>
+            </config>
+        </buildStrategy>
+        <deliveryStrategy
+                class="net.myscloud.plugin.logging.logback.delivery.AsynchronousDeliveryStrategy"/>
+        <source>test-application</source>
+    </appender>
+```
